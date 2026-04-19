@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import projectionsConfig from '../VirtualSky/projectionsConfig.js';
 import { drawCanvas, drawGrid, drawMark, drawValue } from './drawers.js';
 
@@ -13,15 +13,15 @@ const PolarAligment = (props) => {
 
   useEffect(() => {
     draw();
-  //   refresh && draw();
-  //   setRefresh(false);
-  },[props.config]);
+    //   refresh && draw();
+    //   setRefresh(false);
+  }, [props.config]);
   //
-  const draw = () =>{
+  const draw = () => {
     const time = props.config.time || new Date();
     const config = projectionsConfig(null, null, props.config.latitude, props.config.longitude, props.config.language, time)
     const fixed = config.astronomicalTimes.LST - polarStart;
-    const rv = (17.68 - fixed/2) % 12;
+    const rv = (17.68 - fixed / 2) % 12;
 
     svg = drawCanvas(props.id, size);
     drawGrid(svg, size, props.config.color);
@@ -31,7 +31,7 @@ const PolarAligment = (props) => {
 
 
   return (
-      <div id={props.id}/>
+    <div id={props.id} />
   );
 };
 
