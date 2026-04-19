@@ -2,6 +2,8 @@
 
 이 프로젝트는 [raajon/react-virtual-sky](https://github.com/raajon/react-virtual-sky)를 기반으로 하여 성능과 유지보성성을 개선하고 최신 기술 스택으로 업그레이드한 라이브러리입니다.
 
+![Screenshot](screenshot/screenshot.png)
+
 ## 주요 개선 사항
 
 *   **최신 스택 전환**: Create React App 기반에서 **Vite**로 전환하여 더 빠른 개발 환경과 빌드 성능을 제공합니다.
