@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
-import d3 from 'd3'
 import projectionsConfig from '../VirtualSky/projectionsConfig.js';
 import {calcConstellationLines, drawConstellationLines} from './constellationLines.js';
 import {calcConstellationLabels, drawConstellationLabels} from './constellationLabels.js';

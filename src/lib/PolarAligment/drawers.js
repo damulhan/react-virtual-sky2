@@ -1,4 +1,3 @@
-import d3 from 'd3';
 import {i18n} from '../i18n/i18n.js';
 
 export const drawCanvas = (id, size) =>{

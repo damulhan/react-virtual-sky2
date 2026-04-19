@@ -1,5 +1,4 @@
 import {azel2xy, ecliptic2xy, radec2xy, gal2xy} from './projections.js';
-import d3 from 'd3'
 
 const d2r = Math.PI/180;
 let gridAz = [];

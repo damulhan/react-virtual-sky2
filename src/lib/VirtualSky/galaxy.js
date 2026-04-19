@@ -1,5 +1,4 @@
 import {radec2xy} from './projections.js';
-import d3 from 'd3'
 
 const d2r = Math.PI/180;
 let galaxy=[];
