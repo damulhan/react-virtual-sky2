@@ -1,3 +1,4 @@
+import { line, curveLinear } from 'd3';
 import {fk1tofk5, radec2xy} from './projections.js';
 
 const d2r = Math.PI/180;
@@ -81,10 +82,10 @@ export const drawBoundaries = (svg, config) =>{
       .attr("fill", "none");
 }
 
-const lineFunction = d3.svg.line()
+const lineFunction = line()
      .x(d =>{ return d.x; })
      .y(d =>{ return d.y; })
-     .interpolate("linear");
+     .curve(curveLinear);
 
 const isVisible = (el) =>{
   return el>=0;

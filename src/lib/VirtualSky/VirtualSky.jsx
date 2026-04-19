@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
+import { select, pointer } from 'd3';
 import projectionsConfig from '../VirtualSky/projectionsConfig.js';
 import {calcConstellationLines, drawConstellationLines} from './constellationLines.js';
 import {calcConstellationLabels, drawConstellationLabels} from './constellationLabels.js';
@@ -14,7 +15,7 @@ import {stereo} from './projections.js'
 let  clickAz = null;
 let stars = [];
 let planets = [];
-let svg = null;
+let globalSvg = null;
 let azOff = 0;
 let azOffOff = 0;
 
@@ -43,8 +44,8 @@ const VirtualSky = (props) => {
   }, [config]);
 
   useEffect(() => {
-    svg = drawCanvas();
-    draw(svg, azOff, stars);
+    globalSvg = drawCanvas();
+    draw(globalSvg, azOff, stars);
   });
 
   const draw = (svg, stars) =>{
@@ -98,8 +99,8 @@ const VirtualSky = (props) => {
   }
 
   const drawCanvas = () =>{
-    d3.select("#" + props.id).select("svg").remove();
-    const svg = d3.select("#" + props.id).append("svg")
+    select("#" + props.id).select("svg").remove();
+    const svg = select("#" + props.id).append("svg")
         .attr("width", config.width)
         .attr("height", config.height)
         .style("background", "black")
@@ -114,26 +115,26 @@ const VirtualSky = (props) => {
    return svg;
   }
 
-  const onDown = (d) =>{
-    const pos = stereo.xy2azel(...d3.mouse(svg.node()), config.width, config.height);
+  const onDown = (event) =>{
+    const pos = stereo.xy2azel(...pointer(event, globalSvg.node()), config.width, config.height);
     clickAz = pos.az;
   }
 
-  const onMove = (d) =>{
+  const onMove = (event) =>{
     if(clickAz){
-      const pos = stereo.xy2azel(...d3.mouse(svg.node()), config.width, config.height);
+      const pos = stereo.xy2azel(...pointer(event, globalSvg.node()), config.width, config.height);
       // const newAzOff = azOff + (clickAz - pos.az )*r2d;
       azOffOff = (clickAz - pos.az )*r2d;
-      draw(svg, stars, planets)
+      draw(globalSvg, stars, planets)
     }
   }
 
-  const onUp = (d) =>{
-    const pos = stereo.xy2azel(...d3.mouse(svg.node()), config.width, config.height);
+  const onUp = (event) =>{
+    const pos = stereo.xy2azel(...pointer(event, globalSvg.node()), config.width, config.height);
     // azOff = azOff + (clickAz - pos.az )*r2d;
     azOffOff = (clickAz - pos.az )*r2d;
     clickAz = null;
-    draw(svg, stars, planets)
+    draw(globalSvg, stars, planets)
   }
 
   const makeBackground = (svg) =>{

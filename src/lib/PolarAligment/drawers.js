@@ -1,8 +1,9 @@
+import { select, line, curveLinear } from 'd3';
 import {i18n} from '../i18n/i18n.js';
 
 export const drawCanvas = (id, size) =>{
-  d3.select("#" + id).select("svg").remove();
-  const svg = d3.select("#" + id).append("svg")
+  select("#" + id).select("svg").remove();
+  const svg = select("#" + id).append("svg")
       .attr("width", size)
       .attr("height", size)
       .style("background", "black");
@@ -93,7 +94,7 @@ export const drawValue = (svg, rv, size, color, lang) =>{
     .text( (d) =>{ return d.l; });
 }
 
-const lineFunction = d3.svg.line()
+const lineFunction = line()
      .x(d =>{ return d.x; })
      .y(d =>{ return d.y; })
-     .interpolate("linear");
+     .curve(curveLinear);

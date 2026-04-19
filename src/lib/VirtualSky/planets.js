@@ -1,3 +1,4 @@
+import { line, curveLinear } from 'd3';
 import {interpolate} from './projections.js';
 import {radec2xy} from './projections.js';
 import {i18n} from '../i18n/i18n.js';
@@ -93,10 +94,10 @@ export const drawPlanetLabels = (svg) =>{
 }
 
 
-const lineFunction = d3.svg.line()
+const lineFunction = line()
   .x(d =>{ return d.x; })
   .y(d =>{ return d.y; })
-  .interpolate("linear");
+  .curve(curveLinear);
 
 const isVisible = (el) =>{
 	return el > 0;
@@ -252,8 +253,8 @@ const buildPlanet = (planet,jd,days) =>{
 		for(var a = 0 ; a < planetsDefinitions2.length ; a++){
 			if(planetsDefinitions2[a].name===planet) match = a;
 		}
-		if(match < 0) return this;
-		if(match === 2) return this;	// Can't calculate Earth
+		if(match < 0) return null;
+		if(match === 2) return null;	// Can't calculate Earth
 		p = match;
 	}
 
@@ -295,8 +296,8 @@ const getEphem = (planet,day) =>{
 		for(var a = 0 ; a < planetsDefinitions2.length ; a++){
 			if(planetsDefinitions2[a].name===planet) match = a;
 		}
-		if(match < 0) return this;
-		if(match === 2) return this;	// Can't calculate Earth
+		if(match < 0) return null;
+		if(match === 2) return null;	// Can't calculate Earth
 		i = match;
 	}
 

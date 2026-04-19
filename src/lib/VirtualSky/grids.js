@@ -1,3 +1,4 @@
+import { line, curveLinear } from 'd3';
 import {azel2xy, ecliptic2xy, radec2xy, gal2xy} from './projections.js';
 
 const d2r = Math.PI/180;
@@ -121,7 +122,7 @@ export const drawAz = (svg, stereo, azOff, config) =>{
     .text( (d) =>{ return d.l; });
 }
 
-const lineFunction = d3.svg.line()
+const lineFunction = line()
      .x(d =>{ return d.x; })
      .y(d =>{ return d.y; })
-     .interpolate("linear");
+     .curve(curveLinear);

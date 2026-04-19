@@ -197,8 +197,8 @@ export const fk1tofk5 = (a,b) =>{
 // Output is a two element position (degrees)
 const Transform = (p, rot, indeg) =>{
 	if(indeg){
-		p[0] *= this.d2r;
-		p[1] *= this.d2r;
+		p[0] *= d2r;
+		p[1] *= d2r;
 	}
 	var cp1 = Math.cos(p[1]);
 	var m = [Math.cos(p[0])*cp1, Math.sin(p[0])*cp1, Math.sin(p[1])];

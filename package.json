@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "d3": "3.5.17",
+    "d3": "^7.9.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
